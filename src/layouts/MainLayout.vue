@@ -16,7 +16,7 @@
       </q-avatar>
 
 
-      <div class="lg:hidden absolute left-1/2 transform -translate-x-1/2">
+      <div class="m-3 absolute transform -translate-x-1/2">
         <q-avatar size="40px">
           <img src="../assets/logo-sgbr.png" alt="Logo" />
         </q-avatar>

@@ -1,11 +1,5 @@
 <template>
   <q-page class="q-pa-md">
-    <!-- Título da página -->
-    <div class="q-mb-md">
-      <h3>GIFs por Categoria</h3>
-    </div>
-
-    <!-- Dropdown para selecionar categoria -->
     <div class="relative w-full max-w-xs">
       <button
         @click="toggleDropdown"
@@ -80,7 +74,7 @@ const loadCategories = async () => {
 
     const response = await axios.get('https://api.giphy.com/v1/gifs/categories', {
       params: {
-        api_key: 'IN2bp8RFRraZn07JTYS3UrB9nJ6imgA8',
+        api_key: 'cp2RVrwauVtciDFGOCnoadMe2qgPwTZK',
       },
     });
 
@@ -105,7 +99,7 @@ const loadCategoryGifs = async () => {
 
     const response = await axios.get('https://api.giphy.com/v1/gifs/search', {
       params: {
-        api_key: '5cCbojV6ogKVeXGpmt16cJE7miFg3zWF',
+        api_key: 'cp2RVrwauVtciDFGOCnoadMe2qgPwTZK',
         q: selectedCategory.value, // Busca pela categoria selecionada
         limit: 10,
         rating: 'g',
