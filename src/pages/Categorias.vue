@@ -1,5 +1,6 @@
 <template>
   <q-page class="q-pa-md">
+    <!-- Contêiner para centralizar o botão -->
     <div class="relative w-full max-w-xs">
       <button
         @click="toggleDropdown"
@@ -8,6 +9,7 @@
         {{ selectedCategory ? selectedCategory : 'Escolha uma Categoria' }}
       </button>
 
+      <!-- Dropdown -->
       <div
         v-if="dropdownOpen"
         class="absolute mt-2 w-full bg-white shadow-lg rounded-md z-50 h-96 overflow-y-auto"
@@ -33,8 +35,8 @@
         :key="index"
         class="col-12 col-sm-6 col-md-4 col-lg-3"
       >
-        <q-card class="my-card">
-          <q-img :src="gif.images.original.url" :alt="gif.title" class="card-img" />
+        <q-card class="w-full">
+          <q-img :src="gif.images.original.url" :alt="gif.title" class="w-full h-48 object-cover" />
           <q-card-section>
             <div class="text-h6 text-center">{{ gif.title }}</div>
 
@@ -156,29 +158,5 @@ onMounted(() => {
   loadCategories();
 });
 </script>
-
-<style scoped>
-.my-card {
-  width: 100%;
-}
-
-.card-img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
-
-.q-btn {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-}
-
-.relative {
-  position: relative;
-}
-
-.z-50 {
-  z-index: 50;
-}
+<style>
 </style>
