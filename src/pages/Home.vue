@@ -107,7 +107,7 @@ const searchGifs = async () => {
       params: {
         api_key: '5cCbojV6ogKVeXGpmt16cJE7miFg3zWF',
         q: searchQuery.value,
-        limit: 10,
+        limit: 20,
         rating: 'g',
       },
     });
