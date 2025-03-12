@@ -1,11 +1,5 @@
 <template>
   <q-page class="q-pa-md">
-    <!-- Título da página -->
-    <div class="q-mb-md">
-      <h3>GIFs por Categoria</h3>
-    </div>
-
-    <!-- Dropdown para selecionar categoria -->
     <div class="relative w-full max-w-xs">
       <button
         @click="toggleDropdown"
@@ -16,7 +10,7 @@
 
       <div
         v-if="dropdownOpen"
-        class="absolute mt-2 w-full bg-white shadow-lg rounded-md z-50"
+        class="absolute mt-2 w-full bg-white shadow-lg rounded-md z-50 h-96 overflow-y-auto"
         style="top: 100%; left: 0;"
       >
         <ul>
@@ -80,7 +74,7 @@ const loadCategories = async () => {
 
     const response = await axios.get('https://api.giphy.com/v1/gifs/categories', {
       params: {
-        api_key: 'bPTBwAa7BeZSmuylA7LDox0okcs0oisz',
+        api_key: 'cp2RVrwauVtciDFGOCnoadMe2qgPwTZK',
       },
     });
 
@@ -105,17 +99,18 @@ const loadCategoryGifs = async () => {
 
     const response = await axios.get('https://api.giphy.com/v1/gifs/search', {
       params: {
-        api_key: '5cCbojV6ogKVeXGpmt16cJE7miFg3zWF',
+        api_key: 'cp2RVrwauVtciDFGOCnoadMe2qgPwTZK',
         q: selectedCategory.value, // Busca pela categoria selecionada
         limit: 10,
         rating: 'g',
       },
     });
 
+    // Carrega os GIFs da categoria
     categoryGifs.value = response.data.data.map(gif => ({
       title: gif.title,
       images: gif.images,
-      isFavorite: false,
+      isFavorite: checkIfFavorite(gif) // Verifica se o GIF é favorito
     }));
 
     loading.value = false;
@@ -125,15 +120,23 @@ const loadCategoryGifs = async () => {
   }
 };
 
+// Função para verificar se o GIF está nos favoritos
+const checkIfFavorite = (gif) => {
+  const savedGifs = JSON.parse(localStorage.getItem('gifs')) || [];
+  return savedGifs.some(savedGif => savedGif.title === gif.title && savedGif.isFavorite);
+};
+
 // Função para alternar o estado de favorito
 const toggleFavorite = (gif) => {
   gif.isFavorite = !gif.isFavorite;
-  saveGifsToLocalStorage();
+  saveGifsToLocalStorage(); // Salva os GIFs novamente no LocalStorage após a alteração
 };
 
 // Função para salvar os GIFs no LocalStorage
 const saveGifsToLocalStorage = () => {
-  localStorage.setItem('gifs', JSON.stringify(categoryGifs.value));
+  const savedGifs = JSON.parse(localStorage.getItem('gifs')) || [];
+  const updatedGifs = [...savedGifs, ...categoryGifs.value.filter(gif => gif.isFavorite)];
+  localStorage.setItem('gifs', JSON.stringify(updatedGifs));
 };
 
 // Função para abrir ou fechar o dropdown

@@ -1,9 +1,6 @@
 <template>
   <q-page class="q-pa-md">
     <!-- Título da página -->
-    <div class="q-mb-md">
-      <h3>Todos os GIFs</h3>
-    </div>
 
     <!-- Barra de pesquisa -->
     <div class="q-mb-md row items-center  z-50">
@@ -71,7 +68,7 @@ const fetchTrendingGifs = async () => {
     loading.value = true;
     const response = await axios.get('https://api.giphy.com/v1/gifs/trending', {
       params: {
-        api_key: 'bPTBwAa7BeZSmuylA7LDox0okcs0oisz',
+        api_key: 'cp2RVrwauVtciDFGOCnoadMe2qgPwTZK',
         limit: 20,
         offset: 0,
         rating: 'g',
@@ -105,9 +102,9 @@ const searchGifs = async () => {
     loading.value = true;
     const response = await axios.get('https://api.giphy.com/v1/gifs/search', {
       params: {
-        api_key: '5cCbojV6ogKVeXGpmt16cJE7miFg3zWF',
+        api_key: 'cp2RVrwauVtciDFGOCnoadMe2qgPwTZK',
         q: searchQuery.value,
-        limit: 10,
+        limit: 20,
         rating: 'g',
       },
     });

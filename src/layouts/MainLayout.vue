@@ -1,8 +1,6 @@
 <template>
   <q-layout>
     <q-header class="bg-blue-600 text-white flex items-center px-4 relative">
-
-      <!-- Botão Hambúrguer (Somente no Mobile) -->
       <div class="lg:hidden absolute left-4">
         <button
           @click="toggleDrawer"
@@ -12,13 +10,13 @@
         </button>
       </div>
 
-      <!-- Logo no Desktop -->
+
       <q-avatar size="40px" class="mr-2 lg:block hidden">
         <img src="../assets/logo-sgbr.png" alt="Logo" />
       </q-avatar>
 
-      <!-- Logo Centralizada no Mobile -->
-      <div class="lg:hidden absolute left-1/2 transform -translate-x-1/2">
+
+      <div class="m-3 absolute transform -translate-x-1/2">
         <q-avatar size="40px">
           <img src="../assets/logo-sgbr.png" alt="Logo" />
         </q-avatar>
@@ -26,7 +24,7 @@
 
       <q-space />
 
-      <!-- Nome e Avatar à direita -->
+
       <div class="flex items-center ml-4">
         <span class="mr-2">Willian</span>
         <q-avatar>
@@ -35,33 +33,51 @@
       </div>
     </q-header>
 
-    <!-- Menu lateral (Drawer) -->
     <q-drawer
       show-if-above
       v-model="drawer"
-      class="bg-dark"
+      class="white"
       @click-outside="closeDrawer"
     >
       <q-list>
-        <q-item clickable to="/">
+        <q-item
+          clickable
+          to="/"
+          :class="{'bg-blue-100 text-blue-600': $route.path === '/favoritos'}"
+        >
           <q-item-section avatar>
             <q-icon name="home" />
           </q-item-section>
           <q-item-section>Home</q-item-section>
         </q-item>
-        <q-item clickable to="/favoritos">
+
+        <q-item
+          clickable
+          to="/favoritos"
+          :class="{'bg-blue-100 text-blue-600': $route.path === '/favoritos'}"
+        >
           <q-item-section avatar>
             <q-icon name="favorite" />
           </q-item-section>
           <q-item-section>Favorite</q-item-section>
         </q-item>
-        <q-item clickable to="/categorias">
+
+        <q-item
+          clickable
+          to="/categorias"
+          :class="{'bg-blue-100 text-blue-600': $route.path === '/categorias'}"
+        >
           <q-item-section avatar>
             <q-icon name="category" />
           </q-item-section>
           <q-item-section>Categorias</q-item-section>
         </q-item>
-        <q-item clickable to="/sobre">
+
+        <q-item
+          clickable
+          to="/sobre"
+          :class="{'bg-blue-100 text-blue-600': $route.path === '/sobre'}"
+        >
           <q-item-section avatar>
             <q-icon name="info" />
           </q-item-section>
