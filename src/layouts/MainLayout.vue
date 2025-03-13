@@ -1,22 +1,23 @@
 <template>
   <q-layout>
     <q-header class="bg-blue-600 text-white flex items-center px-4 relative">
-      <div class="lg:hidden absolute left-4">
+      <!-- Botão do menu (hamburger) visível apenas em telas pequenas -->
+      <div class="lg:hidden absolute left-4 z-50">
         <button
           @click="toggleDrawer"
-          class="p-4 bg-blue-600 text-white rounded-full hover:bg-blue-800 transition duration-300 ease-in-out shadow-lg"
+          class="p-6 bg-blue-600 text-white rounded-full hover:bg-blue-800 transition duration-300 ease-in-out w-16 h-16 flex items-center justify-center"
         >
-          <q-icon name="menu" />
+          <q-icon name="menu" size="30px" />
         </button>
       </div>
 
-
-      <q-avatar size="40px" class="mr-2 lg:block hidden">
+      <!-- Logo (Visível apenas no desktop) -->
+      <q-avatar size="60px" class="mr-2 lg:block">
         <img src="../assets/logo-sgbr.png" alt="Logo" />
       </q-avatar>
 
-
-      <div class="m-3 absolute transform -translate-x-1/2">
+      <!-- Logo (Visível apenas no celular) -->
+      <div class="lg:hidden absolute left-1/2 transform -translate-x-1/2 z-40">
         <q-avatar size="40px">
           <img src="../assets/logo-sgbr.png" alt="Logo" />
         </q-avatar>
@@ -24,15 +25,16 @@
 
       <q-space />
 
-
+      <!-- Perfil do usuário -->
       <div class="flex items-center ml-4">
         <span class="mr-2">Willian</span>
-        <q-avatar>
+        <q-avatar size="5vh">
           <img src="../assets/User.png" alt="Perfil" />
         </q-avatar>
       </div>
     </q-header>
 
+    <!-- Drawer de navegação -->
     <q-drawer
       show-if-above
       v-model="drawer"
