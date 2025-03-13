@@ -1,9 +1,6 @@
 <template>
   <q-page class="q-pa-md">
-    <!-- Título da página -->
-
-    <!-- Barra de pesquisa -->
-    <div class="q-mb-md row items-center  z-50">
+    <div class="q-mb-md row items-center z-50">
       <q-input
         v-model="searchQuery"
         label="Pesquisar GIFs"
@@ -13,7 +10,6 @@
       />
     </div>
 
-    <!-- Grid de todos os GIFs -->
     <div class="row q-col-gutter-md justify-center">
       <div
         v-for="(gif, index) in gifs"
@@ -24,8 +20,6 @@
           <q-img :src="gif.images.original.url" :alt="gif.title" class="card-img" />
           <q-card-section>
             <div class="text-h6 text-center">{{ gif.title }}</div>
-
-            <!-- Estrela de favorito -->
             <q-btn
               flat
               icon="star"
@@ -43,16 +37,11 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
-import { useRouter } from 'vue-router';
 
-const router = useRouter();
-
-// Estado para armazenar os GIFs, o carregamento e a pesquisa
 const gifs = ref([]);
 const loading = ref(false);
 const searchQuery = ref('');
 
-// Função para carregar os GIFs da API ou do LocalStorage
 const loadGifs = () => {
   const savedGifs = localStorage.getItem('gifs');
   if (savedGifs) {
@@ -62,7 +51,6 @@ const loadGifs = () => {
   }
 };
 
-// Função para carregar os GIFs da API
 const fetchTrendingGifs = async () => {
   try {
     loading.value = true;
@@ -91,7 +79,6 @@ const fetchTrendingGifs = async () => {
   }
 };
 
-// Função para pesquisar GIFs
 const searchGifs = async () => {
   if (!searchQuery.value) {
     fetchTrendingGifs();
@@ -123,18 +110,15 @@ const searchGifs = async () => {
   }
 };
 
-// Função para alternar o estado de favorito
 const toggleFavorite = (gif) => {
   gif.isFavorite = !gif.isFavorite;
   saveGifsToLocalStorage();
 };
 
-// Função para salvar os GIFs no LocalStorage
 const saveGifsToLocalStorage = () => {
   localStorage.setItem('gifs', JSON.stringify(gifs.value));
 };
 
-// Carregar os GIFs quando o componente for montado
 onMounted(() => {
   loadGifs();
 });
@@ -144,7 +128,6 @@ onMounted(() => {
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
-
 
 .my-card {
   width: 100%;
