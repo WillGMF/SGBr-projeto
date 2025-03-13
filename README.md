@@ -27,7 +27,7 @@ Este é um projeto web desenvolvido usando **Quasar Framework** e **Vue 3**. A a
 
 1. **Clone o repositório**:
 
-   git clone https://github.com/seu-usuario/gif-explorer.git
+   git https://github.com/WillGMF/SGBr-projeto
 
 2. **Para instalar as dependências**
    
